@@ -1,0 +1,74 @@
+<html>
+<head>
+<title> Welcome to Dashboard
+	
+</title>
+<link rel="stylesheet" type="text/css" href="restaurantStyle.css">
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript" src="restaurantWebApp.js"></script>
+</head>
+<body background="linear-gradient(to bottom, rgb(219, 52, 83), #4cb929)">
+	<div id="header">
+		<hr height="2em">
+<center><h1><ul>Welcome to the Dhaba</ul></h1></center> 
+	<hr height="2em">
+	</div>
+<div class="left-align">
+	Tables
+	<form>
+    <input class="search-menu" id ="listTable" type="text" name="search" onkeyup="searchDataTable()" placeholder="Search Tables">
+</form>
+<ul id="myULT"></ul>
+<div id="myModal" class="modal" style="align-self: center;">
+<div id="headerN"> </div>
+<table id="table-detail"></table>
+<div id="total"> </div>
+<button type="bill-generate" class ="bill-payment">CLOSE the session!!!</button>
+<span class="closeN">&times;</span>  
+ 
+</div> 
+</div>
+
+
+<div class="middle">
+<hr class="vertical-line">
+</div>
+<div class="right-align">
+	Menu
+<form>
+<input id="menuList" class="search-menu" type="text" name="search" onkeyup="searchData();" placeholder="Search items or types">
+</form>
+<span class="sortby"> Sort By
+<select id="select-menu" onchange="menuData(itemData)">
+  <option value="none">None</option>
+  <option value="starters">Starters</option>
+  <option value="desserts and beverages">Desserts and Beverages</option>
+  <option value="maincourse">MainCourse</option>
+  <option value="breads">Breads</option>
+</select>
+</span>
+<ul id="myUL"></ul>
+</div>
+
+<script type="text/javascript">
+	createTable();
+	menuData(itemData);
+	function menuData(itemData){
+	
+		var out="";
+		var sortby=document.getElementById("select-menu").value;
+		for(var i=0;i<itemData.length; i++){
+				if(sortby=="none"){
+					out+='<li> <a id='+ i +' href="#" draggable="true" ondragstart="drag(event)"> '+ itemData[i].name +'<br>' + itemData[i].cost +'</a></li></br>';
+				}
+				else if(sortby==itemData[i].type){
+					out+='<li> <a id='+ i +' href="#" draggable="true" ondragstart="drag(event)"> '+ itemData[i].name +'<br>' + itemData[i].cost +'</a></li></br>';
+				}
+		}
+		 document.getElementById('myUL').innerHTML=out;
+	}
+
+</script>
+
+</body>
+</html>
